@@ -1,0 +1,225 @@
+/* ============================================================================
+   BOOKISH — Design Tokens (colors + type + spacing + elevation)
+   Direction A · "Indigo Studio"
+   Single source of truth. Import this in every Bookish artifact:
+     <link rel="stylesheet" href="colors_and_type.css">
+   Fonts load from Google Fonts (see README › Visual Foundations):
+     Hanken Grotesk (UI/body) · Bricolage Grotesque (wordmark/display)
+     Noto Color Emoji (expressive icons)
+   ============================================================================ */
+
+/* Fonts: self-hostable, with a stable CDN fallback — see fonts/fonts.css + fonts/README.md.
+   (No Google Fonts dependency.) */
+/* fonts imported separately via src/styles/fonts.css */
+
+:root {
+  /* ---- Font families ---------------------------------------------------- */
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Bricolage Grotesque", "Hanken Grotesk", sans-serif; /* wordmark + big brand moments */
+  --font-emoji: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", "JetBrains Mono", monospace;
+
+  /* ---- Accent · Indigo -------------------------------------------------- */
+  --accent-50:  #EEF1FE;
+  --accent-100: #DCE2FD;
+  --accent-200: #C0CAFB;
+  --accent-300: #9AAAF7;
+  --accent-400: #6E84F1;
+  --accent-500: #3552E8;  /* PRIMARY — buttons, active states, links */
+  --accent-600: #2A41C9;  /* hover / pressed */
+  --accent-700: #2335A3;
+  --accent-800: #1F2E83;
+  --accent-900: #1B265F;
+  --accent: var(--accent-500);
+  --accent-deep: var(--accent-600);
+  --accent-soft: var(--accent-50);   /* tinted fills behind active nav, chips */
+  --accent-ring: var(--accent-200);  /* focus rings, subtle borders */
+  --on-accent: #FFFFFF;
+
+  /* ---- Neutrals · cool gray --------------------------------------------- */
+  --canvas:        #F7F8FB;  /* app background */
+  --surface:       #FFFFFF;  /* cards, sidebars, sheets */
+  --surface-sunken:#F2F3F8;  /* hover fills, wells, track backgrounds */
+  --fg-1:          #15181F;  /* primary text / ink */
+  --fg-2:          #5B6271;  /* secondary text */
+  --fg-3:          #9AA0AE;  /* tertiary / placeholder / meta */
+  --fg-on-dark:    #FFFFFF;
+  --border:        #E7E9F0;  /* default hairline */
+  --border-strong: #D7DAE4;  /* inputs, dividers needing more weight */
+
+  /* ---- Aero glass (Craft-style translucency) ---------------------------- */
+  --glass-fill:  rgba(255,255,255,0.62);
+  --glass-blur:  blur(18px) saturate(140%);
+  --glass-border: rgba(255,255,255,0.7);
+  /* soft accent wash placed BEHIND glass surfaces */
+  --wash-accent: radial-gradient(120% 90% at 0% 0%, #EEF1FE 0%, var(--canvas) 55%);
+
+  /* ---- Grid-paper texture (subtle, bluish, opt-in) --------------------- */
+  --grid-line: #D6DEF4;  /* soft blue-tinted line */
+  --grid-size: 26px;
+  /* apply: background-image: var(--grid-paper); background-size: var(--grid-size) var(--grid-size); */
+  --grid-paper:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+
+  /* ---- Semantic ---------------------------------------------------------- */
+  --success:      #0E9E6E;  --success-soft: #E2F6EE;  --success-deep: #0A7C56;
+  --warning:      #E0902E;  --warning-soft: #FBF0DC;  --warning-deep: #B9701B;
+  --danger:       #E0533D;  --danger-soft:  #FCEAE6;  --danger-deep:  #B83A28;
+  --info: var(--accent-500); --info-soft: var(--accent-50);
+
+  /* Star rating */
+  --star: #F5A524;
+
+  /* ---- Book covers · soft tonal pastels (white → gentle tint, deep-hue title) */
+  --cover-indigo: linear-gradient(165deg, #FBFCFF 6%, #DCE3FB 100%);  --cover-ink-indigo: #2A41C9;
+  --cover-teal:   linear-gradient(165deg, #FBFFFD 6%, #D6F0E4 100%);  --cover-ink-teal:   #0E8060;
+  --cover-amber:  linear-gradient(165deg, #FFFDFB 6%, #FBE4D4 100%);  --cover-ink-amber:  #C2520C;
+  --cover-violet: linear-gradient(165deg, #FFFCFF 6%, #ECE2FB 100%);  --cover-ink-violet: #6D28D9;
+  --cover-ocean:  linear-gradient(165deg, #FBFDFF 6%, #D7E9FA 100%);  --cover-ink-ocean:  #1F6FB2;
+  --cover-rose:   linear-gradient(165deg, #FFFBFD 6%, #FBE0EC 100%);  --cover-ink-rose:   #B83A6A;
+
+  /* ---- Radii ------------------------------------------------------------- */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;   /* buttons, inputs, nav items */
+  --radius-lg: 12px;   /* book covers, small cards */
+  --radius-xl: 14px;   /* panels, banners, large cards */
+  --radius-2xl: 20px;  /* modals, hero surfaces */
+  --radius-pill: 999px;
+
+  /* ---- Spacing (4px base) ------------------------------------------------ */
+  --space-0: 0;     --space-1: 4px;  --space-2: 8px;  --space-3: 12px;
+  --space-4: 16px;  --space-5: 20px; --space-6: 24px; --space-7: 32px;
+  --space-8: 40px;  --space-9: 48px; --space-10: 64px;
+
+  /* ---- Elevation (cool, low-contrast, layered) -------------------------- */
+  --shadow-xs: 0 1px 2px rgba(16,20,30,0.06);
+  --shadow-sm: 0 1px 2px rgba(16,20,30,0.04), 0 1px 3px rgba(16,20,30,0.07);
+  --shadow-md: 0 4px 12px -4px rgba(16,20,30,0.12);
+  --shadow-lg: 0 12px 28px -12px rgba(16,20,30,0.22);
+  --shadow-xl: 0 30px 60px -40px rgba(16,20,30,0.40);
+  --shadow-cover: 0 1px 2px rgba(16,20,30,0.06), 0 10px 22px -12px rgba(16,20,30,0.28);
+  --shadow-accent: 0 6px 16px -6px var(--accent-500); /* primary-button glow */
+
+  /* ---- Focus ------------------------------------------------------------- */
+  --focus-ring: 0 0 0 3px var(--accent-ring);
+
+  /* ---- Motion (calm, quick, no bounce) ---------------------------------- */
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --dur-1: 120ms;  /* hovers, color shifts */
+  --dur-2: 180ms;  /* small movement, fades */
+  --dur-3: 260ms;  /* panels, sheets */
+}
+
+/* ============================================================================
+   TYPE SCALE — semantic helpers (use these or the vars above)
+   ============================================================================ */
+
+.bk-display {            /* wordmark / hero brand moments */
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--fg-1);
+}
+
+.bk-h1 { font: 700 30px/1.15 var(--font-sans); letter-spacing: -0.025em; color: var(--fg-1); }
+.bk-h2 { font: 700 24px/1.2  var(--font-sans); letter-spacing: -0.02em;  color: var(--fg-1); }
+.bk-h3 { font: 700 19px/1.25 var(--font-sans); letter-spacing: -0.015em; color: var(--fg-1); }
+.bk-title { font: 600 16px/1.3 var(--font-sans); letter-spacing: -0.01em; color: var(--fg-1); }
+
+.bk-body-lg { font: 400 16px/1.55 var(--font-sans); color: var(--fg-1); }
+.bk-body    { font: 400 14.5px/1.55 var(--font-sans); color: var(--fg-1); }
+.bk-body-sm { font: 400 13px/1.5 var(--font-sans); color: var(--fg-2); }
+.bk-caption { font: 500 12px/1.4 var(--font-sans); color: var(--fg-3); }
+
+.bk-overline {
+  font: 700 11px/1.2 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.bk-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* ============================================================================
+   PRIMITIVES — drop-in component classes
+   ============================================================================ */
+
+.bk-btn {
+  font: 600 13.5px/1 var(--font-sans);
+  white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 16px; border-radius: var(--radius-md);
+  border: 1px solid transparent; cursor: pointer;
+  transition: background var(--dur-1) var(--ease), transform var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
+}
+.bk-btn:active { transform: translateY(0.5px) scale(0.99); }
+
+.bk-btn--primary { background: var(--accent-500); color: var(--on-accent); box-shadow: var(--shadow-accent); }
+.bk-btn--primary:hover { background: var(--accent-600); }
+
+.bk-btn--secondary { background: var(--surface); color: var(--fg-1); border-color: var(--border); box-shadow: var(--shadow-xs); }
+.bk-btn--secondary:hover { background: var(--surface-sunken); }
+
+.bk-btn--ghost { background: transparent; color: var(--fg-2); }
+.bk-btn--ghost:hover { background: var(--surface-sunken); color: var(--fg-1); }
+
+.bk-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.bk-input {
+  font: 400 14px/1.4 var(--font-sans);
+  width: 100%; padding: 10px 12px;
+  background: var(--surface); color: var(--fg-1);
+  border: 1px solid var(--border-strong); border-radius: var(--radius-md);
+  transition: border-color var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
+}
+.bk-input::placeholder { color: var(--fg-3); }
+.bk-input:focus { outline: none; border-color: var(--accent-400); box-shadow: var(--focus-ring); }
+
+.bk-chip {
+  font: 600 13px/1 var(--font-sans);
+  white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 13px; border-radius: var(--radius-pill);
+  background: var(--surface); color: var(--fg-2);
+  border: 1px solid var(--border); cursor: pointer;
+  transition: all var(--dur-1) var(--ease);
+}
+.bk-chip:hover { background: var(--surface-sunken); }
+.bk-chip--active { background: var(--fg-1); color: #fff; border-color: var(--fg-1); }
+.bk-chip--accent { background: var(--accent-soft); color: var(--accent-deep); border-color: transparent; }
+
+.bk-glass {
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+}
+
+.bk-emoji { font-family: var(--font-emoji); font-weight: 400; line-height: 1; }
+
+/* ============================================================================
+   AERO GOAL STRIP — the ONE signature glass moment in the product.
+   Use sparingly: reserved for the reading-challenge / goal banner only.
+   Place over the grid-paper content area; tinted frosted glass picks up
+   the accent. Do NOT spread this to the whole sidebar or generic cards —
+   that's what keeps long sessions calm.
+   ============================================================================ */
+.bk-goal-glass {
+  background: linear-gradient(120deg,
+              rgba(53,82,232,0.20),
+              rgba(124,139,245,0.10) 55%,
+              rgba(14,124,102,0.13));
+  -webkit-backdrop-filter: blur(16px) saturate(155%);
+  backdrop-filter: blur(16px) saturate(155%);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 14px 34px -18px rgba(53,82,232,0.55),
+              inset 0 1px 0 rgba(255,255,255,0.80);
+}

@@ -1,0 +1,20 @@
+/* ============================================================================
+   BOOKISH — fonts (CDN)
+   ============================================================================ */
+
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:400;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/hanken-grotesk@latest/latin-400-normal.woff2') format('woff2');}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:500;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/hanken-grotesk@latest/latin-500-normal.woff2') format('woff2');}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:600;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/hanken-grotesk@latest/latin-600-normal.woff2') format('woff2');}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:700;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/hanken-grotesk@latest/latin-700-normal.woff2') format('woff2');}
+@font-face{font-family:'Hanken Grotesk';font-style:normal;font-weight:800;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/hanken-grotesk@latest/latin-800-normal.woff2') format('woff2');}
+
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:400 800;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/bricolage-grotesque:vf@latest/latin-wght-normal.woff2') format('woff2');}
+
+@font-face{font-family:'Noto Color Emoji';font-style:normal;font-weight:400;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/noto-color-emoji@latest/emoji-400-normal.woff2') format('woff2');}
