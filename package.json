@@ -21,8 +21,7 @@
     },
     "files": [
       "dist/**/*",
-      "electron/main.cjs",
-      "public/logo.png"
+      "electron/main.cjs"
     ],
     "win": {
       "target": [
@@ -32,7 +31,8 @@
             "x64"
           ]
         }
-      ]
+      ],
+      "icon": "build/icon.ico"
     },
     "nsis": {
       "oneClick": false,
