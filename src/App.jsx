@@ -1,122 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from 'react';
+import { Sidebar } from './components/Sidebar/index.jsx';
+import { TopBar } from './components/shared/index.jsx';
+import { IconButton } from './components/primitives/index.jsx';
+import { LibraryScreen, BookDetail, GoalsScreen, StatsScreen, HomeScreen, Placeholder } from './screens/index.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [route, setRoute] = useState("library");
+  const [book, setBook] = useState(null);
+
+  const openBook = (b) => {
+    setBook(b);
+    window.requestAnimationFrame(() => {
+      const el = document.querySelector(".bk-scroll");
+      if (el) el.scrollTop = 0;
+    });
+  };
+  const closeBook = () => setBook(null);
+  const go = (r) => { setBook(null); setRoute(r); };
+
+  let screen;
+  if (book) screen = <BookDetail book={book} onBack={closeBook} openBook={openBook} />;
+  else if (route === "library") screen = <LibraryScreen openBook={openBook} />;
+  else if (route === "home") screen = <HomeScreen openBook={openBook} />;
+  else if (route === "challenges") screen = <GoalsScreen />;
+  else if (route === "stats") screen = <StatsScreen />;
+  else if (route === "lists") screen = <Placeholder title="Lists" emoji="📋" blurb="Build your own reading lists — Summer 2026, Comfort rereads, Booker longlist. Group books any way you like, beyond the standard shelves." />;
+  else if (route === "authors") screen = <Placeholder title="Authors" emoji="✍️" blurb="Every author on your shelves, with how many of their books you've read and what's still waiting. Follow the writers you love." />;
+  else if (route === "history") screen = <Placeholder title="History" emoji="🕒" blurb="A timeline of everything you've finished — when you read it, how fast, and the rating you gave. Your reading life, year by year." />;
+  else if (route === "planner") screen = <Placeholder title="Planner" emoji="🗓️" blurb="Plan what's next: schedule reads, set a monthly pace, and line up your TBR so the challenge stays on track." />;
+  else screen = <LibraryScreen openBook={openBook} />;
+
+  const topRight = (
+    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+      <IconButton name="bell" title="Notifications" />
+      <IconButton name="layout-grid" title="Grid view" active />
+      <IconButton name="list" title="List view" />
+    </div>
+  );
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div style={{ display: "flex", height: "100vh", width: "100vw", background: "var(--canvas)", position: "relative", overflow: "hidden" }}>
+      <div style={{ position: "absolute", inset: 0, background: "var(--wash-accent)", pointerEvents: "none", zIndex: 0 }} />
 
-      <div className="ticks"></div>
+      <Sidebar route={book ? null : route} setRoute={go} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      <main style={{ flex: 1, position: "relative", zIndex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
+        <TopBar right={topRight} />
+        <div className="bk-scroll" style={{ flex: 1, overflow: "auto", position: "relative" }}>
+          <div className="bk-gridpaper" />
+          <div style={{ position: "relative", maxWidth: 1100, margin: "0 auto", padding: "28px 30px 72px" }}>
+            {screen}
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
